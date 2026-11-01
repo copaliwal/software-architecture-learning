@@ -140,6 +140,13 @@ public class AzureServiceBusEventBus : IEventBus
 }
 ```
 
+The producer examples above are intentionally simplified. Saving business state and then
+publishing directly creates a dual-write failure window: either step can succeed while the other
+fails. When publication must reliably follow a database change, write an outbox record in the
+same local transaction and publish it with a relay; see
+[Transactional Outbox](../../03-architectural-patterns/distributed-systems-patterns.md#transactional-outbox).
+Consumers should also tolerate duplicate delivery.
+
 ### 4. Event Store (Optional)
 Persistent storage for events (used in Event Sourcing).
 

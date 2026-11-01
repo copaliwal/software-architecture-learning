@@ -4,7 +4,12 @@ Deep dive into advanced architectural concepts and patterns for enterprise-scale
 
 ---
 
-## Domain-Driven Design (DDD)
+## Tactical Domain Modeling in .NET (DDD)
+
+For the canonical overview of strategic and tactical DDD concepts, see the
+[Domain-Driven Design guide](../02-architectural-styles/03-domain-driven-design-DDD/domain-driven-design-DDD.md).
+The examples in this section are a .NET-oriented companion; use them as illustrations rather than
+prescriptive templates.
 
 ### Core Concepts
 

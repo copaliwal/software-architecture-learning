@@ -125,12 +125,16 @@ Domain‑Driven Design is a **strategic and tactical approach** to building comp
 
 * * *
 
-Sources:
+References:
+
+- Eric Evans, *Domain-Driven Design: Tackling Complexity in the Heart of Software* (Addison-Wesley, 2003).
+- Microsoft Learn: [Use Domain Analysis to Model Microservices](https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis)
+- Microsoft Learn: [Tackling Business Complexity in a Microservice with DDD and CQRS Patterns](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/)
+
+Supplementary community summaries (secondary, not normative references):
 
 - GeeksforGeeks – [Domain‑Driven Design (DDD)](https://www.geeksforgeeks.org/system-design/domain-driven-design-ddd/)
 - GitHub – [Domain‑Driven Design Roadmap](https://github.com/masoud-bahrami/domain-driven-design-roadmap)
 - Codezup – [Step‑by‑Step Guide to Implementing DDD Principles](https://codezup.com/a-step-by-step-guide-to-implementing-domain-driven-design-principles/)
 
 * * *
-
-Would you like me to also prepare a **visual context map diagram** (showing bounded contexts and their relationships) so you can add it to your Notion notes?

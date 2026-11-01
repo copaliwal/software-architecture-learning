@@ -14,6 +14,7 @@ requirements, quality attributes, constraints, and operational context.
 
 - [Styles overview](02-architectural-styles/architectural-styles.md)
 - [Microservices](02-architectural-styles/01-microservices-architecture/microservices-architecture.md)
+- [Modular Monolith](02-architectural-styles/07-modular-monolith/modular-monolith.md)
 - [Serverless](02-architectural-styles/02-serverless/serverless.md)
 - [Domain-Driven Design](02-architectural-styles/03-domain-driven-design-DDD/domain-driven-design-DDD.md)
 - [Event-Driven Architecture](02-architectural-styles/04-event-driven-architecture/event-driven-architecture.md)
@@ -26,6 +27,8 @@ requirements, quality attributes, constraints, and operational context.
 - [Distributed Systems Patterns](03-architectural-patterns/distributed-systems-patterns.md) —
   deadlines, retry, circuit breaker, bulkhead, rate limiting, idempotency, outbox/inbox, discovery,
   and caching.
+- [Enterprise Application Patterns](03-architectural-patterns/enterprise-application-patterns.md) —
+  Repository, Unit of Work, Specification, Anti-Corruption Layer, and related boundaries.
 - [Integration and Communication Patterns](03-architectural-patterns/integration-and-communication-patterns.md) —
   request/response, REST, GraphQL, gRPC, queues, pub/sub, streams, and webhooks.
 - [Saga](03-architectural-patterns/01-SAGA-pattern/SAGA-pattern.md)
@@ -59,6 +62,7 @@ requirements, quality attributes, constraints, and operational context.
   [Mediator](04-design-patterns/3-behavioral-patterns/7-mediator.md),
   [Memento](04-design-patterns/3-behavioral-patterns/8-memento.md),
   [Interpreter](04-design-patterns/3-behavioral-patterns/9-interpreter.md),
+  [Iterator](04-design-patterns/3-behavioral-patterns/11-iterator.md),
   [Visitor](04-design-patterns/3-behavioral-patterns/10-visitor.md)
 
 ## 05 — Design Principles
@@ -81,11 +85,17 @@ requirements, quality attributes, constraints, and operational context.
 
 - [Branching Strategy](08-software-development-process/Branching%20Strategy.md)
 
-## Editorial Notes
+## Using the Knowledge Base
 
-The existing material includes updates clarifying CAP and PACELC, replacing fire-and-forget
-replication with durable messaging, using Polly v8 resilience APIs, adopting Microsoft Entra
-terminology, and distinguishing the Dependency Inversion Principle from dependency injection.
+Start with [Foundations](01%20Foundations.md) to identify drivers and trade-offs, then use the
+style and pattern indexes to compare approaches. The collection is selective rather than
+exhaustive; use the linked primary references for implementation details that vary by platform
+or version.
+
+## Documentation Audit
+
+- [Architecture documentation audit](reports/architecture-documentation-audit.md) — inventory,
+  changes, validation results, and remaining gaps.
 
 ## Scope and Related Material
 

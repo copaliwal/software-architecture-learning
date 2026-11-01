@@ -1,31 +1,44 @@
-# Distributed transaction
+# Distributed Transactions and Coordination
 
-## 📊 Comparison of Distributed Transaction Approaches
+## What Needs Coordination?
 
-| Approach | Type | How It Works | Pros | Cons | Best Use Cases | Avoid When |
-| --- | --- | --- | --- | --- | --- | --- |
-| **Saga Pattern** | **Architectural Pattern** | Breaks a long transaction into local transactions with compensating actions. Two types: **Orchestration** (central controller) and **Choreography** (event-driven). | Scales well in microservices, avoids global locks, resilient | Eventual consistency only, debugging can be complex | E‑commerce orders, booking systems, workflows across multiple services | Systems needing strict immediate consistency (e.g., financial ledgers) |
-| **Two‑Phase Commit (2PC)** | **Protocol** | Coordinator ensures all participants agree before commit. If one fails, rollback occurs. | Strong consistency, simple conceptual model | Blocking, poor scalability, single point of failure | Small distributed systems with few participants | Large-scale microservices, high‑latency networks |
-| **Event Sourcing** | **Architectural Pattern** | Persist all state changes as events; rebuild state by replaying events. | Full audit/history, easy to debug, integrates with CQRS | Complex to implement, storage overhead | Financial systems, audit trails, systems needing replay | Simple apps where only current state matters |
-| **Transactional Outbox** | **Pattern** | Write events and DB changes in same transaction; a relay publishes events reliably. | Ensures consistency between DB and message broker, simple to implement | Extra infrastructure (outbox table, relay), eventual consistency | Microservices needing reliable event publishing | Systems without messaging or where DB overhead is critical |
-| **Try‑Confirm/Cancel (TCC)** | **Pattern** | Each service reserves resources (Try), confirms if successful, cancels otherwise. | Stronger consistency than Saga, explicit resource reservation | Complex to design, requires idempotent operations | Payment systems, resource booking | Simple workflows, systems without reservation semantics |
+A workflow that changes data owned by more than one resource cannot usually use one local ACID
+transaction. Choose a strategy from the business invariant, participant capabilities, failure
+semantics, and acceptable user-visible states. These approaches solve different problems; they
+are not interchangeable implementations of one universal transaction.
 
----
+## Coordination Approaches
 
-## 🔑 Key Insights
+| Approach | How it works | Trade-offs and suitable use |
+| --- | --- | --- |
+| **Saga** | A sequence of local transactions. A later failure triggers compensating business actions for completed steps. Coordination may be orchestration or choreography. | Allows participants to commit independently, but exposes intermediate states and compensation is not a literal rollback. Use for long-running business workflows that can be eventually consistent. |
+| **Two-phase commit (2PC)** | A coordinator asks participants to prepare, then directs them to commit or abort. | Can provide atomic commit when every participant and the transaction manager support the protocol. Participants may hold resources while waiting; coordinator recovery and blocking behavior matter. Use only where the environment and availability requirements support it. |
+| **Try-Confirm/Cancel (TCC)** | Each participant reserves or prepares a business resource, then confirms or cancels that reservation. | Makes resource reservation explicit, but requires participant APIs, expiration/recovery rules, and idempotent operations. It does not automatically provide global ACID isolation or stronger consistency than every Saga. |
 
-*   **Saga** → Best for **microservices** where eventual consistency is acceptable.
-*   **2PC** → Best for **small distributed systems** needing strict consistency, but not scalable.
-*   **Event Sourcing** → Best for **audit/history** requirements.
-*   **Transactional Outbox** → Best for **reliable event publishing** in microservices.
-*   **TCC** → Best for **resource reservation workflows** (e.g., booking, payments).
+### Patterns That Support, but Do Not Replace, Coordination
 
----
+- **Transactional outbox:** Atomically stores a business update and the intent to publish a message
+  in one local database transaction. A relay publishes it later, normally with at-least-once
+  delivery; consumers must handle duplicates. This solves reliable publication from one database,
+  not atomic commit across the database and broker. See
+  [Distributed Systems Patterns](distributed-systems-patterns.md#transactional-outbox).
+- **Event Sourcing:** Persists domain changes as an event sequence and rebuilds state from that
+  history. It can support audit and temporal requirements and can be combined with a Saga, but it
+  is not itself a distributed transaction protocol. See
+  [Event Sourcing](03-event-sourcing/event-sourcing.md).
+- **CQRS:** Separates command and query models. It may make read-model consistency explicit but
+  does not coordinate writes across services. See [CQRS](02-CQRS-pattern/CQRS-pattern.md).
 
-## ✨ Takeaway
+## Choosing a Strategy
 
-*   **Saga is an architectural pattern** designed for distributed transactions in microservices.
-*   It trades strict consistency for scalability and resilience.
-*   Alternatives like **2PC, Event Sourcing, Outbox, TCC** each solve different aspects of the distributed transaction problem.
+1. State the invariant and identify which component owns each piece of data.
+2. Decide whether intermediate states are visible and how long they may persist.
+3. Determine whether participants support a shared commit protocol, reservations, or only local
+   transactions.
+4. Define timeout, retry, duplicate, compensation, and recovery behavior before implementation.
+5. Make workflow status observable and provide a safe way to reconcile or repair incomplete work.
 
----
+Use a Saga when a business workflow can tolerate intermediate states and has meaningful
+compensations. Consider 2PC only when the resource managers, operational environment, and failure
+requirements make its blocking and recovery model acceptable. Use TCC when participants can
+reserve domain resources and the business needs explicit confirm/cancel steps.

@@ -11,7 +11,7 @@ a selection guide, not a complete or mutually exclusive classification.
 | --- | --- | --- | --- | --- |
 | [**Layered (N-tier)**](05-layered-architecture/layered-architecture.md) | Architectural style | Organizes code into layers with defined dependency rules. | Application | Presentation, application, and data-access layers. |
 | **Monolithic** | Deployment style | Packages the application as one deployable unit; internal modularity varies. | Application | A single deployable web application. |
-| **Modular monolith** | Deployment and module structure | One deployable unit with explicit, enforced internal module boundaries. | Application | An order-management application with separate ordering and inventory modules. |
+| [**Modular monolith**](07-modular-monolith/modular-monolith.md) | Deployment and module structure | One deployable unit with explicit, enforced internal module boundaries. | Application | An order-management application with separate ordering and inventory modules. |
 | [**Microservices**](01-microservices-architecture/microservices-architecture.md) | Architectural and deployment style | Composes independently deployable services around capabilities and data ownership. | System | Catalog, order, and payment services. |
 | **Service-Oriented Architecture (SOA)** | Architectural style | Integrates services through explicit contracts; governance and service granularity vary. | Enterprise | Business services shared across multiple applications. |
 | [**Serverless**](02-serverless/serverless.md) | Cloud execution approach | Uses provider-managed compute and services, often event-triggered. | Application or workload | A function reacting to an object-storage event. |

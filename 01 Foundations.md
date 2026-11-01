@@ -109,19 +109,12 @@ CAP only describes behaviour during a partition, which is rare. **PACELC** cover
 > **if (P)** artition → choose **A**vailability or **C**onsistency;
 > **E**lse → choose **L**atency or **C**onsistency.
 
-The "else" branch is the one you live with every day: **stronger consistency costs latency**,
-because more replicas must acknowledge a write before it's confirmed.
+The "else" branch describes the normal-operation trade-off between latency and consistency.
+Coordination can add latency when a consistency guarantee requires it, but PACELC does not imply
+one universal replication mechanism or fixed cost.
 
-| System | Classification | Reading |
-|---|---|---|
-| Azure Cosmos DB (Strong) | PC/EC | Consistent under partition *and* accepts latency normally |
-| Azure Cosmos DB (Session/Eventual) | PA/EL | Available under partition, low latency normally |
-| Azure SQL (single region) | PC/EC | Prioritises consistency |
-| Cassandra / DynamoDB | PA/EL | Available and fast, eventually consistent |
-
-**Interview line:** *"CAP is the partition-time choice; PACELC is the everyday one. Most of my
-consistency decisions are actually the 'else' branch — trading latency for consistency — because
-partitions are rare and latency is constant."*
+Avoid assigning one CAP or PACELC label to an entire database product. The result depends on the
+operation, replication topology, consistency configuration, and failure being considered.
 
 ### Trade-offs
 
@@ -129,19 +122,17 @@ partitions are rare and latency is constant."*
 
 #### CP (Consistency + Partition Tolerance)
 - **Sacrifices:** Availability during network partitions
-- **Use When:** Data accuracy is critical (financial transactions, inventory)
-- **Examples:** MongoDB (with strong consistency), HBase, Redis (with synchronous replication)
-- **Scenario:** Banking system - better to be unavailable than show incorrect balance
+- **Use when:** An operation must reject or wait rather than return a result that violates its consistency requirement.
+- **Scenario:** A write requiring a reachable quorum is rejected when that quorum cannot be reached.
 
 #### AP (Availability + Partition Tolerance)
 - **Sacrifices:** Consistency (eventual consistency)
-- **Use When:** System uptime is more important than immediate consistency
-- **Examples:** Cassandra, DynamoDB, Cosmos DB (in eventual consistency mode)
-- **Scenario:** Social media feed - okay if likes/comments are slightly delayed
+- **Use when:** An operation may accept updates on reachable partitions and reconcile or converge later.
+- **Scenario:** A regional preference update is accepted locally while replication is delayed.
 
 #### CA (Consistency + Availability)
 - **Reality:** Not achievable in true distributed systems with network partitions
-- **Examples:** Single-node databases (not distributed)
+- **Example:** A single-node database is outside CAP's distributed-system trade-off; it is not a CA distributed system.
 - **Note:** If you don't need partition tolerance, you don't need a distributed system
 
 ### Practical Example
@@ -235,7 +226,7 @@ Negative:
 - Higher infrastructure costs initially
 
 **Alternatives Considered:**
-1. Modular Monolith - Rejected due to scaling limitations
+1. Modular Monolith - Rejected because the stated workload requires independent deployment and scaling of the affected capabilities
 2. Serverless - Rejected due to cold start concerns for latency-sensitive operations
 ```
 

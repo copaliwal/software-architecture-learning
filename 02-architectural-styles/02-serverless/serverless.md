@@ -126,6 +126,6 @@ Serverless is an **architectural style** that abstracts infrastructure, enabling
 
 * * *
 
-Would you like me to also prepare a **comparison table: Microservices vs Serverless vs Monolith** so you can document trade-offs between these architectural styles in your Notion?
+## References
 
-Sources:
+- [Azure Functions overview — Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)

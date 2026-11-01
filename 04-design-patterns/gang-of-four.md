@@ -52,6 +52,7 @@ These manage algorithms, relationships, and responsibilities.
 | [**Mediator**](3-behavioral-patterns/7-mediator.md) | Centralizes communication between objects | UI coordination, messaging |
 | [**Memento**](3-behavioral-patterns/8-memento.md) | Captures and restores object state | Undo functionality |
 | [**Interpreter**](3-behavioral-patterns/9-interpreter.md) | Implements a grammar | Expression parsing, rule engines |
+| [**Iterator**](3-behavioral-patterns/11-iterator.md) | Traverses a collection without exposing its representation | Collection APIs, tree traversal |
 | [**Visitor**](3-behavioral-patterns/10-visitor.md) | Adds operations to object structure | AST traversal, serialization |
 
 These patterns are widely used in object-oriented design to solve recurring design problems and create more flexible, maintainable, and scalable software.
