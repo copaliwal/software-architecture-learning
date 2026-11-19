@@ -678,14 +678,14 @@ SQL Server Execution Times: CPU time = 4120 ms, elapsed time = 4390 ms.
 
 ```mermaid
 flowchart TD
-    A["1. Estimated vs actual rows<br/>large gap?"] --> B["2. Warnings<br/>spills, implicit conversion, missing stats"]
-    B --> C["3. Thick arrows<br/>where do most rows flow?"]
-    C --> D["4. Scans and key lookups<br/>on large tables"]
-    D --> E["5. Sorts and hashes<br/>spilled to tempdb?"]
-    E --> F["6. Memory grant<br/>requested vs used"]
-    F --> G["7. Parallelism<br/>skew, exchange spills"]
-    G --> H["8. Predicates<br/>non-SARGable, residual"]
-    H --> I["9. Plan shape<br/>did it change between runs?"]
+    A["Step 1: Estimated vs actual rows<br/>large gap?"] --> B["Step 2: Warnings<br/>spills, implicit conversion, missing stats"]
+    B --> C["Step 3: Thick arrows<br/>where do most rows flow?"]
+    C --> D["Step 4: Scans and key lookups<br/>on large tables"]
+    D --> E["Step 5: Sorts and hashes<br/>spilled to tempdb?"]
+    E --> F["Step 6: Memory grant<br/>requested vs used"]
+    F --> G["Step 7: Parallelism<br/>skew, exchange spills"]
+    G --> H["Step 8: Predicates<br/>non-SARGable, residual"]
+    H --> I["Step 9: Plan shape<br/>did it change between runs?"]
 ```
 
 1. **Estimated vs actual rows (do this first).** Hover over each operator: *Estimated Number of Rows Per Execution* vs *Actual Number of Rows*. A gap of 10× or more is the **root cause of most bad plans**: the optimizer chose join type, join order, memory grant and access path based on a wrong number ([Part 1, ch. 9](./01-sql-server-internals-query-tuning-and-concurrency.md#9-statistics-and-cardinality-estimation)). Note that for the inner side of a nested loop, "estimated" is *per execution* — multiply by the number of executions.
@@ -935,15 +935,15 @@ A: The string parameter is sent as `nvarchar`, so SQL Server implicitly converts
 
 ```mermaid
 flowchart BT
-    L9["9. Scale up the tier or hardware<br/>tactical only"] --> L8
-    L8["8. Caching and read offload"] --> L7
-    L7["7. Concurrency: RCSI, short transactions, lock order"] --> L6
-    L6["6. Schema: types, keys, archiving, denormalisation"] --> L5
-    L5["5. Plan stability: forcing, PSP, recompile, hints"] --> L4
-    L4["4. Statistics and cardinality estimation"] --> L3
-    L3["3. Indexing: design, consolidate, cover"] --> L2
-    L2["2. Predicates: SARGable, matching types"] --> L1
-    L1["1. Query and ORM shape: projection, N+1, set-based"]
+    L9["Step 9: Scale up the tier or hardware<br/>tactical only"] --> L8
+    L8["Step 8: Caching and read offload"] --> L7
+    L7["Step 7: Concurrency: RCSI, short transactions, lock order"] --> L6
+    L6["Step 6: Schema: types, keys, archiving, denormalisation"] --> L5
+    L5["Step 5: Plan stability: forcing, PSP, recompile, hints"] --> L4
+    L4["Step 4: Statistics and cardinality estimation"] --> L3
+    L3["Step 3: Indexing: design, consolidate, cover"] --> L2
+    L2["Step 2: Predicates: SARGable, matching types"] --> L1
+    L1["Step 1: Query and ORM shape: projection, N+1, set-based"]
 ```
 
 | Rung | Typical payoff | Risk | Rollback | Needs downtime? |

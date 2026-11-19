@@ -1251,10 +1251,10 @@ you must use the *event* id inside the payload.
 ### Layers of de-duplication (use several)
 ```mermaid
 flowchart LR
-    R[Receiver] -->|"1. Inbox unique index"| IB[(Inbox)]
-    R -->|"2. Service Bus duplicate detection<br/>MessageId = EventId"| Q[[Queue]]
+    R[Receiver] -->|"Layer 1: Inbox unique index"| IB[(Inbox)]
+    R -->|"Layer 2: Service Bus duplicate detection<br/>MessageId = EventId"| Q[[Queue]]
     Q --> P[Processor]
-    P -->|"3. Business idempotency<br/>state machine + version"| DB[(Business data)]
+    P -->|"Layer 3: Business idempotency<br/>state machine + version"| DB[(Business data)]
 ```
 1. **Receiver inbox** (unique `(Provider, EventId)`) — cheap, absolute.
 2. **Broker detection** — Service Bus `RequiresDuplicateDetection` with `MessageId`; window up to

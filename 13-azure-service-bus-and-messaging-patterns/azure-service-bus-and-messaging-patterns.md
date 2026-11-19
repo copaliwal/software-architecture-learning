@@ -107,9 +107,9 @@ dependency into a *capacity* dependency (the queue just grows). They also give b
 
 ```mermaid
 flowchart LR
-    P["Producer"] -->|"1. send"| B[("Broker: durable queue")]
-    B -->|"2. deliver + lock"| C["Consumer"]
-    C -->|"3. ack / settle"| B
+    P["Producer"] -->|"Step 1: send"| B[("Broker: durable queue")]
+    B -->|"Step 2: deliver + lock"| C["Consumer"]
+    C -->|"Step 3: ack / settle"| B
     B -.->|"lock expires: redeliver"| C
     B -->|"delivery count exceeded"| D[("Dead-letter queue")]
 ```
@@ -1856,9 +1856,9 @@ sequenceDiagram
     participant H as Handler
     participant DB as SQL Server
     SB->>H: Deliver M1 (lock)
-    H->>DB: BEGIN; INSERT Inbox(M1)
+    H->>DB: BEGIN TX, INSERT Inbox(M1)
     alt first time
-        H->>DB: Business update + Outbox rows; COMMIT
+        H->>DB: Business update + Outbox rows, COMMIT
     else duplicate (unique violation)
         H->>DB: ROLLBACK (nothing to do)
     end
