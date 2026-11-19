@@ -1235,22 +1235,24 @@ A batch send is **all-or-nothing** at the broker; on failure none of that batch 
 
 ```mermaid
 flowchart LR
-    subgraph Producer["Producer service (Orders)"]
-      A["POST /orders"] --> TX{{"1. Local TX"}}
+    subgraph PRODUCER["Producer service - Orders"]
+      A["POST /orders"] --> TX{{"Step 1: Local TX"}}
       TX --> BT[("Orders")]
       TX --> OB[("Outbox")]
-      OB --> RL["2. Relay"]
+      OB --> RL["Step 2: Relay"]
     end
-    RL -->|"3. at-least-once<br/>MessageId = Outbox.Id"| SB[("Azure Service Bus<br/>topic + dup-detect")]
-    SB -->|"4. Peek-Lock"| CN
-    subgraph Consumer["Consumer service (Inventory)"]
-      CN["Processor"] --> TX2{{"5. Local TX"}}
-      TX2 --> IN[("Inbox")]
+    subgraph CONSUMER["Consumer service - Inventory"]
+      CN["Processor"] --> TX2{{"Step 5: Local TX"}}
+      TX2 --> INB[("Inbox")]
       TX2 --> BT2[("Stock")]
-      TX2 --> OB2[("Outbox<br/>(next events)")]
-      CN --> CM["6. Complete"]
+      TX2 --> OB2[("Outbox<br/>next events")]
+      CN --> CM["Step 6: Complete"]
     end
-    SB -->|"max deliveries"| DLQ[("DLQ")]
+    SB[("Azure Service Bus<br/>topic + dup-detect")]
+    DLQ[("DLQ")]
+    RL -->|"Step 3: at-least-once<br/>MessageId = Outbox.Id"| SB
+    SB -->|"Step 4: Peek-Lock"| CN
+    SB -->|"max deliveries"| DLQ
     DLQ --> OPS["Alert + replay tool"]
 ```
 
