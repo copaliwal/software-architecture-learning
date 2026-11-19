@@ -91,7 +91,10 @@
 
 ## 🛠️ Implementation in .NET & Azure
 
-- **ASP.NET Core APIs** for services.
+- **ASP.NET Core APIs** for services (internals: [ASP.NET Core Web API Internals](../../10-aspnet-core-web-api-internals/aspnet-core-web-api-internals.md)).
+- **Containers** for packaging ([Docker and Containerization](../../09-containers-and-docker/docker-and-containerization.md)).
+- **Migrating from a monolith:** see [Cloud Migration and Legacy Modernization](../../11-cloud-migration-and-modernization/cloud-migration-and-legacy-modernization.md)
+  (Strangler Fig, incremental migration, data synchronization).
 - **Azure Kubernetes Service (AKS)** for orchestration.
 - **Azure API Management** as API Gateway.
 - **Azure Service Bus/Event Grid** for messaging.

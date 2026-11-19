@@ -1,5 +1,8 @@
 # Distributed Transactions and Coordination
 
+> **Single-database transactions:** isolation levels, locking and deadlocks are covered in
+> [SQL Server internals, query tuning and concurrency](../17-database-performance-optimization/01-sql-server-internals-query-tuning-and-concurrency.md).
+
 ## What Needs Coordination?
 
 A workflow that changes data owned by more than one resource cannot usually use one local ACID

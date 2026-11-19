@@ -37,7 +37,8 @@ contract.
 - **Event streaming:** retains an ordered log within partitions for independent consumers and
   replay; partition keys and retention affect ordering and scalability.
 - **Webhook:** delivers an event to a consumer-owned HTTP endpoint. Sign requests, verify
-  timestamps, retry with bounded backoff, and make receiver processing idempotent.
+  timestamps, retry with bounded backoff, and make receiver processing idempotent. Deep dive:
+  [Webhooks and Event-Based Integration](../12-webhooks-and-event-based-integration/webhooks-and-event-based-integration.md).
 - **Message broker:** routes and delivers messages; it does not remove the need for contracts,
   schema evolution, observability, or application-level failure handling.
 

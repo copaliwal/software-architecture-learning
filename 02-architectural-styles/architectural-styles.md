@@ -1,5 +1,8 @@
 # Architectural Styles
 
+> **Interview capstone:** [Advanced Architecture and Microservices](../16-advanced-architecture-and-microservices/advanced-architecture-and-microservices.md) maps every style and
+> pattern to its deep dive and adds Clean/Onion architecture, decomposition and trade-off guidance.
+
 Architectural styles describe recurring ways to organize a system and constrain how its parts
 interact. The terms in this overview do not all belong to the same taxonomy: some are styles,
 some are communication or deployment patterns, and some are design approaches. Treat the list as

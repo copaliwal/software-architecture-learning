@@ -25,7 +25,13 @@ Cloud-native systems rely on six key foundational pillars:
 4.  **Containers**
     - Containers package the application code, dependencies, and runtime into a binary called a **container image**.
     - Containers provide **portability and guarantee consistency** across different environments.
-    - **Docker** is the de facto standard for containerizing applications.
+    - Service-level depth: [Azure Services and Cloud Architecture](../14-azure-services-and-cloud-architecture/azure-services-and-cloud-architecture.md)
+      and [Azure Service Bus and Messaging Patterns](../13-azure-service-bus-and-messaging-patterns/azure-service-bus-and-messaging-patterns.md).
+    - **Docker** is the de facto standard for containerizing applications. See the
+      [Docker and Containerization guide](../09-containers-and-docker/docker-and-containerization.md)
+      for internals, Dockerfile/multi-stage practice, security and Azure deployment options, and the
+      [Cloud Migration and Legacy Modernization guide](../11-cloud-migration-and-modernization/cloud-migration-and-legacy-modernization.md)
+      for moving existing workloads onto these platforms.
     - **Container Orchestrators** (like Kubernetes) manage containers at scale, handling scheduling, health monitoring, failover, scaling, networking, and rolling upgrades. **Kubernetes (K8s)** is the de facto standard orchestrator. **Azure Kubernetes Service (AKS)** is the fully managed platform offering.
 5.  **Backing Services**
     - Ancillary resources such as databases, message brokers, caching, monitoring, and identity services.

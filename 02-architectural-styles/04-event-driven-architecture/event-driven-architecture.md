@@ -1,5 +1,8 @@
 ﻿# Event-Driven Architecture (EDA)
 
+> **Deep dives:** [Azure Service Bus and Messaging Patterns](../../13-azure-service-bus-and-messaging-patterns/azure-service-bus-and-messaging-patterns.md)
+> (queues, topics, sessions, DLQ, outbox/inbox) and [Webhooks and Event-Based Integration](../../12-webhooks-and-event-based-integration/webhooks-and-event-based-integration.md).
+
 ## 📖 Definition
 
 **Event-Driven Architecture (EDA)** is an architectural style where system components communicate through the production, detection, consumption, and reaction to events. An event represents a significant change in state or an important occurrence in the system.

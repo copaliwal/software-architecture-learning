@@ -5,6 +5,11 @@
 **Category:** Architectural Pattern  
 **Intent:** Provide a single entry point for client applications to interact with multiple microservices. Acts as a reverse proxy to route requests to appropriate services.
 
+**Related:** gateway middleware and `IHttpClientFactory` usage are explained in
+[ASP.NET Core Web API Internals](../../10-aspnet-core-web-api-internals/aspnet-core-web-api-internals.md);
+using a gateway or proxy as a Strangler Fig facade is covered in
+[Cloud Migration and Legacy Modernization](../../11-cloud-migration-and-modernization/cloud-migration-and-legacy-modernization.md).
+
 ---
 
 ## Problem

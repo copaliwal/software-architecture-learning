@@ -510,6 +510,11 @@ public class EventSubscriber : BackgroundService
 
 ### 1. **Containers & Kubernetes**
 
+> **Deep dive:** the [Docker and Containerization guide](../09-containers-and-docker/docker-and-containerization.md)
+> covers images, multi-stage builds, networking, security, Azure deployment and Docker vs
+> Kubernetes in full. The snippet below is a short illustration only; prefer the current
+> supported .NET image tags described in that guide.
+
 ```dockerfile
 # Dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base

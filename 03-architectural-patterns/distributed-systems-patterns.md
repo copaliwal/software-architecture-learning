@@ -5,6 +5,10 @@ failures, retries, and duplicate delivery are normal operating conditions. These
 bound failures and preserve business invariants; none makes a remote call equivalent to a local
 call.
 
+> **Azure implementation:** outbox/inbox, retry, dead-letter and replay on Service Bus are worked
+> through in [Azure Service Bus and Messaging Patterns](../13-azure-service-bus-and-messaging-patterns/azure-service-bus-and-messaging-patterns.md);
+> webhook-specific retries and idempotency in [Webhooks and Event-Based Integration](../12-webhooks-and-event-based-integration/webhooks-and-event-based-integration.md).
+
 ## Start with Failure Boundaries
 
 For each remote dependency, define a caller deadline, the failures that are safe to retry, the
@@ -124,6 +128,8 @@ duplicate effects; it does not guarantee message ordering.
 
 ### Transactional Outbox
 
+> Full treatment (table design, claiming, CDC, ordering, replay): [Inbox, Outbox and Reliable Messaging](../15-inbox-outbox-and-reliable-messaging/inbox-outbox-and-reliable-messaging.md).
+
 When a command changes a database and must publish a message, write the business change and an
 outbox record in the same local transaction. A separate dispatcher publishes committed records,
 retries transient broker failures, and marks records as delivered. Publication can still be
@@ -149,6 +155,8 @@ The outbox makes the database write and durable publication intent atomic; it do
 distributed transaction with the broker or provide exactly-once end-to-end effects.
 
 ### Inbox / Processed-Message Record
+
+> Full treatment: [Inbox, Outbox and Reliable Messaging](../15-inbox-outbox-and-reliable-messaging/inbox-outbox-and-reliable-messaging.md).
 
 A consumer can store the message identifier in the same transaction as its business update. A
 unique constraint rejects a duplicate identifier, allowing the handler to acknowledge a message

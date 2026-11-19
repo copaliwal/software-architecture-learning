@@ -85,17 +85,76 @@ requirements, quality attributes, constraints, and operational context.
 
 - [Branching Strategy](08-software-development-process/Branching%20Strategy.md)
 
+## 09 — Containers and Docker
+
+- [Docker and Containerization](09-containers-and-docker/docker-and-containerization.md) —
+  containers vs VMs, Docker architecture, images/layers, multi-stage builds, ASP.NET Core images,
+  networking, volumes, Compose, troubleshooting, security, Azure deployment, Docker vs Kubernetes.
+
+## 10 — ASP.NET Core Web API Internals
+
+- [ASP.NET Core Web API Internals](10-aspnet-core-web-api-internals/aspnet-core-web-api-internals.md) —
+  pipeline and middleware, routing, controllers vs Minimal APIs, DI/Options/logging, exception
+  handling, filters, binding/validation, hosted services, `IHttpClientFactory` and socket
+  exhaustion, performance and production troubleshooting.
+
+## 11 — Cloud Migration and Modernization
+
+- [Cloud Migration and Legacy Modernization](11-cloud-migration-and-modernization/cloud-migration-and-legacy-modernization.md) —
+  the 8 Rs, Strangler Fig, monolith to microservices, database migration and CDC, zero-downtime
+  releases (blue-green, canary, parallel run), rollback, disaster recovery, hybrid cloud, cost.
+
+## 12 — Webhooks and Event-Based Integration
+
+- [Webhooks and Event-Based Integration](12-webhooks-and-event-based-integration/webhooks-and-event-based-integration.md) —
+  webhook vs polling vs queues, provider/consumer design, HMAC signatures, idempotency, retries,
+  ordering, async processing with Service Bus, monitoring and security.
+
+## 13 — Azure Service Bus and Messaging Patterns
+
+- [Azure Service Bus and Messaging Patterns](13-azure-service-bus-and-messaging-patterns/azure-service-bus-and-messaging-patterns.md) —
+  messaging fundamentals, queues/topics/sessions, settlement, DLQ, duplicate detection, scaling,
+  outbox/inbox, competing consumers, replay, Service Bus vs Event Grid vs Event Hubs.
+
+## 14 — Azure Services and Cloud Architecture
+
+- [Azure Services and Cloud Architecture](14-azure-services-and-cloud-architecture/azure-services-and-cloud-architecture.md) —
+  core Azure services, service selection trade-offs, identity and Key Vault, networking and private
+  endpoints, resilience and DR, Well-Architected Framework, cost optimization.
+
+## 15 — Inbox, Outbox and Reliable Messaging
+
+- [Inbox, Outbox and Reliable Messaging](15-inbox-outbox-and-reliable-messaging/inbox-outbox-and-reliable-messaging.md) —
+  dual-write problem, transactional outbox (polling and CDC), atomic claiming, inbox idempotency,
+  Service Bus delivery, why exactly-once is hard, idempotency keys for external APIs, DLQ and replay.
+
+## 16 — Advanced Architecture and Microservices
+
+- [Advanced Architecture and Microservices](16-advanced-architecture-and-microservices/advanced-architecture-and-microservices.md) —
+  interview-oriented capstone: a map from every architecture and microservices subtopic to its deep
+  dive, plus full coverage of Clean/Onion architecture, service decomposition, CAP in practice,
+  resilience, observability, versioning, distributed monoliths and trade-off decisions.
+
+## 17 — Database Performance Optimization and Troubleshooting
+
+- [Part 1: SQL Server internals, query tuning and concurrency](17-database-performance-optimization/01-sql-server-internals-query-tuning-and-concurrency.md) — execution lifecycle,
+  plans, indexes, statistics, parameter sniffing, SARGability, pagination, N+1, isolation levels,
+  locking, deadlocks, row versioning, connection pooling.
+- [Part 2: Database architecture, scaling and troubleshooting](17-database-performance-optimization/02-database-architecture-scaling-and-troubleshooting.md) — partitioning,
+  sharding, replicas, Redis caching patterns, read/write separation, HA, Query Store, Extended
+  Events, DMVs, wait stats and a production troubleshooting runbook.
+- [Finding and fixing database performance issues](17-database-performance-optimization/03-finding-and-fixing-database-performance-issues.md) —
+  end-to-end method: locate the bottleneck from app and database side, improvement ladder, proving
+  the fix, prevention, and worked case studies.
+- [OFFSET/FETCH and pagination deep dive](17-database-performance-optimization/04-offset-fetch-and-pagination-deep-dive.md) —
+  why OFFSET is slow, how to make it cheaper, keyset pagination, cheap counts and API design.
+
 ## Using the Knowledge Base
 
 Start with [Foundations](01%20Foundations.md) to identify drivers and trade-offs, then use the
 style and pattern indexes to compare approaches. The collection is selective rather than
 exhaustive; use the linked primary references for implementation details that vary by platform
 or version.
-
-## Documentation Audit
-
-- [Architecture documentation audit](reports/architecture-documentation-audit.md) — inventory,
-  changes, validation results, and remaining gaps.
 
 ## Scope and Related Material
 

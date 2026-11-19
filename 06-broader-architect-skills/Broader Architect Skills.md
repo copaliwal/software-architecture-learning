@@ -1,5 +1,10 @@
 # 06 Broader Architect Skills
 
+> **Related deep dives:** [Azure Services and Cloud Architecture](../14-azure-services-and-cloud-architecture/azure-services-and-cloud-architecture.md)
+> (Key Vault, Managed Identity, networking, Well-Architected) and
+> [Webhooks and Event-Based Integration](../12-webhooks-and-event-based-integration/webhooks-and-event-based-integration.md)
+> (HMAC signing, replay protection, SSRF).
+
 Beyond technical design patterns, architects need a diverse skill set spanning security, DevOps, performance optimization, and communication. This section covers essential skills for modern software architects.
 
 ---
@@ -484,6 +489,10 @@ app.MapHealthChecks("/health", new HealthCheckOptions
 ```
 
 ### 3. **Database Optimization**
+
+> **Deep dive:** [SQL Server internals, query tuning and concurrency](../17-database-performance-optimization/01-sql-server-internals-query-tuning-and-concurrency.md) and
+> [Database architecture, scaling and troubleshooting](../17-database-performance-optimization/02-database-architecture-scaling-and-troubleshooting.md). The snippets below are a short EF Core
+> illustration only.
 
 ```csharp
 // Indexing

@@ -375,6 +375,10 @@ public class GetOrderByIdQueryHandler : IRequestHandler<GetOrderByIdQuery, Order
 
 ### Using Azure Service Bus for Event Synchronization
 
+> Read-replica routing, read/write separation and caching trade-offs: [Database architecture, scaling and troubleshooting](../../17-database-performance-optimization/02-database-architecture-scaling-and-troubleshooting.md).
+
+> Publishing reliably from the write side requires the outbox pattern: see [Inbox, Outbox and Reliable Messaging](../../15-inbox-outbox-and-reliable-messaging/inbox-outbox-and-reliable-messaging.md).
+
 ```csharp
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int>
 {

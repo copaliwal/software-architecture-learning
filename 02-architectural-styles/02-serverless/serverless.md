@@ -1,5 +1,8 @@
 # Serverless
 
+> **See also:** [Azure Services and Cloud Architecture](../../14-azure-services-and-cloud-architecture/azure-services-and-cloud-architecture.md)
+> for Functions vs App Service vs Container Apps selection.
+
 The **Serverless architectural style** is a cloud computing execution model where applications run in stateless compute containers managed entirely by the cloud provider. Developers focus on writing business logic, while the provider handles provisioning, scaling, and maintenance.
 
 ## 📖 Definition

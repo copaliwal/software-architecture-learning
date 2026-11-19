@@ -138,7 +138,8 @@ A practical, system-level way to manage distributed transactions across multiple
 
 - **Azure Service Bus:**
     
-    **Queues** for commands, **topics** for events; dead-letter queues for failures.
+    **Queues** for commands, **topics** for events; dead-letter queues for failures. See the
+    [Azure Service Bus and Messaging Patterns guide](../../13-azure-service-bus-and-messaging-patterns/azure-service-bus-and-messaging-patterns.md).
     
 - **Azure Event Hubs:**
     

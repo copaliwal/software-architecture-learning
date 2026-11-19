@@ -1,5 +1,8 @@
 # Modular Monolith
 
+> **See also:** [Cloud Migration and Legacy Modernization](../../11-cloud-migration-and-modernization/cloud-migration-and-legacy-modernization.md)
+> for using a modular monolith as an intermediate step before extracting services.
+
 ## Overview
 
 A modular monolith is one deployable application organized into explicit modules with enforced
